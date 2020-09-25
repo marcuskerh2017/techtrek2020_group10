@@ -15,13 +15,20 @@ class FormPage extends Component {
   state = {
     loading: true,
     customerName: "",
-    customerAge: "",
     serviceOfficerName: "",
+    customerAge: 0,
     nric: "",
-    registrationTime: "",
-    branchCode: "",
+    registrationTime: new Date().toLocaleString(),
+    branchCode: 7177,
     image: "",
-    productType: "",
+    productType: [],
+    url: "http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/validateForm",
+  };
+
+  handleChange = (name) => (event) => {
+    console.log(name)
+    console.log(event.target.value)
+    this.setState({ [name]: event.target.value });
   };
 
   async componentDidMount() {
@@ -31,6 +38,29 @@ class FormPage extends Component {
   render() {
     const handleFormSubmit = async (e) => {
       // form handler
+      e.preventDefault();
+      fetch(this.state.url, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName: this.state.customerName,
+          customerAge: this.state.customerAge,
+          serviceOfficerName: this.state.serviceOfficerName,
+          NRIC: this.state.nric,
+          registrationTime: this.state.registrationTime,
+          branchCode: this.state.branchCode,
+          productType: this.state.productType
+        }),
+      })
+        .then((res) => {
+          return res.text();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     return (
@@ -45,34 +75,34 @@ class FormPage extends Component {
                     <div class="flex items-center justify-between mt-4">
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >Customer name</label>
-                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' required />
+                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' value={this.state.customerName} onChange={this.handleChange("customerName")} required />
                       </div>
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >Service Officer Name</label>
-                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' required />
+                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' value={this.state.serviceOfficerName} onChange={this.handleChange("serviceOfficerName")} required />
                       </div>
                     </div>
 
                     <div class="flex items-center justify-between mt-4">
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >NRIC</label>
-                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' required />
+                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' value={this.state.nric} onChange={this.handleChange("nric")} required />
                       </div>
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >Customer Age</label>
-                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' required />
+                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' value={this.state.customerAge} onChange={this.handleChange("customerAge")} required />
                       </div>
                     </div>
 
                     <div class="flex items-center justify-between mt-4">
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >Registration Time</label>
-                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' required />
+                        <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text' value={this.state.registrationTime} required />
                       </div>
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >Branch Code</label>
                         <div class="flex-shrink w-full inline-block relative">
-                          <select class="block appearance-none text-gray-600 w-full bg-white border border-gray-400 shadow-inner px-4 py-2 pr-8 rounded">
+                          <select class="block appearance-none text-gray-600 w-full bg-white border border-gray-400 shadow-inner px-4 py-2 pr-8 rounded" options={this.state.branchData}>
                             <option>choose ...</option>
                             <option>7177</option>
                             <option>8100</option>
