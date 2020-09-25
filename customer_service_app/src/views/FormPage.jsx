@@ -30,7 +30,7 @@ class FormPage extends Component {
       { name: "137 : Investor", _id: 1 }, { name: "070 : Insurance", _id: 2 }, { name: "291 : Loans", _id: 3 }, { name: "969 : Savings", _id: 4 }, { name: "555: Credit Cards", _id: 5 }
     ],
     branchData: [
-      { name: "3243", _id: 1 }, { name: "234", _id: 2 }, { name: "23432", _id: 3 }, { name: "12321", _id: 4 }, { name: "23432", _id: 5 }
+      { name: "020", _id: 1 }, { name: "052", _id: 2 }, { name: "064", _id: 3 }, { name: "008", _id: 4 }, { name: "052", _id: 5 }
     ],
   };
 
@@ -81,7 +81,7 @@ class FormPage extends Component {
         }),
       })
         .then((res) => {
-          return res.text();
+          console.log(res)
         })
         .catch((err) => {
           console.log(err);
