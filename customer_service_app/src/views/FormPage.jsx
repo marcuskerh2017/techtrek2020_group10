@@ -87,7 +87,7 @@ class FormPage extends Component {
         headers: {
           "Content-Type": "application/json",
           "Key": "yihengfang",
-          "Authorization": localStorage.getItem("token")
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
           customerName: this.state.customerName,
