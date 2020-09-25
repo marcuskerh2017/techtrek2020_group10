@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Clock from 'react-live-clock';
+import HeaderHome from "../components/HeaderHome";
 
 const styles = (theme) => ({
   root: {
@@ -20,7 +21,7 @@ class HomePage extends Component {
   render() {
     return (
       <>
-        <Header />
+        <HeaderHome />
         {/* <Typography component="div">
           <h1 className="header">Home Page</h1>
         </Typography> */}
