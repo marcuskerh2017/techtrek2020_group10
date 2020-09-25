@@ -22,6 +22,7 @@ class FormPage extends Component {
     branchCode: 7177,
     image: "",
     productType: [],
+    url: "http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/validateForm",
   };
 
   handleChange = (name) => (event) => {
@@ -37,6 +38,29 @@ class FormPage extends Component {
   render() {
     const handleFormSubmit = async (e) => {
       // form handler
+      e.preventDefault();
+      fetch(this.state.url, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName: this.state.customerName,
+          customerAge: this.state.customerAge,
+          serviceOfficerName: this.state.serviceOfficerName,
+          NRIC: this.state.nric,
+          registrationTime: this.state.registrationTime,
+          branchCode: this.state.branchCode,
+          productType: this.state.productType
+        }),
+      })
+        .then((res) => {
+          return res.text();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     return (
