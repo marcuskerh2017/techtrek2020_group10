@@ -73,13 +73,13 @@ class FormPage extends Component {
     const handleFormSubmit = async (e) => {
       // form handler
       e.preventDefault();
-      // console.log(this.state.customerName)
-      // console.log(parseInt(this.state.customerAge))
-      // console.log(this.state.serviceOfficerName)
-      // console.log(this.state.nric)
-      // console.log(this.state.registrationTime.slice(0,8) + ' 0' + this.state.registrationTime.slice(11,18))
-      // console.log(parseInt(this.state.branchCode.value))
-      // console.log(getValuesFromObjectArray(this.state.productType))
+      console.log(this.state.customerName)
+      console.log(parseInt(this.state.customerAge))
+      console.log(this.state.serviceOfficerName)
+      console.log(this.state.nric)
+      console.log(this.state.registrationTime.slice(0,8) + ' 0' + this.state.registrationTime.slice(11,18))
+      console.log(parseInt(this.state.branchCode.value))
+      console.log(getValuesFromObjectArray(this.state.productType))
 
       fetch(this.state.url, {
         method: "POST",
@@ -199,15 +199,6 @@ class FormPage extends Component {
                               classNamePrefix="select"
                               isClearable
                             />
-                            <div class="pointer-events-none absolute top-0 mt-3  right-0 flex items-center px-2 text-gray-600">
-                              <svg
-                                class="fill-current h-4 w-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                              </svg>
-                            </div>
                           </div>
                         </div>
                       </div>
