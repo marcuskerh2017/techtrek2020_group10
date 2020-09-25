@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import auth from "../components/Auth";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const url = "http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/login";
@@ -27,6 +28,10 @@ const LoginPage = () => {
         return res.text();
       })
       .then((data) => {
+        auth.login(() => {
+          props.history.push("/home");
+        });
+        console.log(`isAuthenticated state : ${auth.isAuthenticated()}`);
         window.localStorage.setItem("token", data);
       })
       .catch((err) => {
