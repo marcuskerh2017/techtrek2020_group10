@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Select from "react-select";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ImageLoader from 'react-image-file';
 
 const styles = (theme) => ({
   root: {
@@ -40,6 +41,7 @@ class FormPage extends Component {
       { name: "12321", _id: 4 },
       { name: "23432", _id: 5 },
     ],
+    file: []
   };
 
   parseRolesData = (data) =>
@@ -78,14 +80,17 @@ class FormPage extends Component {
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
+          "Key": "yihengfang",
+          "Authorization": localStorage.getItem("token")
         },
         body: JSON.stringify({
           customerName: this.state.customerName,
           customerAge: parseInt(this.state.customerAge),
           serviceOfficerName: this.state.serviceOfficerName,
           NRIC: this.state.nric,
-          registrationTime: this.state.registrationTime,
+          registrationTime: this.state.registrationTime.slice(0,8) + ' ' + this.state.registrationTime.slice(11,18),
           branchCode: parseInt(this.state.branchCode),
+          image: new Blob(["<html>…</html>"], {type: 'text/html'}),
           productType: getValuesFromObjectArray(this.state.productType),
         }),
       })
@@ -199,10 +204,11 @@ class FormPage extends Component {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                           Image
                         </label>
-                        <input
+                        {/* <input
                           class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
                           type="text"
-                        />
+                        /> */}
+                        <ImageLoader alt='some text'/>
                       </div>
                       <div class="w-full md:w-1/2 px-3 mb-6">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
