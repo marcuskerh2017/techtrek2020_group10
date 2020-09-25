@@ -1,11 +1,40 @@
 /* eslint-disable react/state-in-constructor */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const LoginPage = () => {
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const url = "http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/login";
+
+  function handleSubmitForm(e) {
+    e.preventDefault();
+    fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((res) => {
+        return res.text();
+      })
+      .then((data) => {
+        window.localStorage.setItem("token", data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  console.log(`username : ${username} , password : ${password}`);
   return (
     <>
       <Header />
@@ -33,6 +62,12 @@ const LoginPage = () => {
                 id="username"
                 type="text"
                 placeholder="Username"
+                name="username"
+                value={username}
+                onChange={(e) => {
+                  console.log("Value : ", e.target.value);
+                  setUsername(e.target.value);
+                }}
               />
             </div>
             <div class="mb-6">
@@ -47,10 +82,17 @@ const LoginPage = () => {
                 id="password"
                 type="password"
                 placeholder="******************"
+                name="password"
+                value={password}
+                onChange={(e) => {
+                  console.log("Value : ", e.target.value);
+                  setPassword(e.target.value);
+                }}
               />
             </div>
             <div class="flex items-center justify-between">
               <button
+                onClick={handleSubmitForm}
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
               >
