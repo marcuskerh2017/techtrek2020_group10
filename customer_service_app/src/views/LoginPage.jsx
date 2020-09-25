@@ -42,8 +42,8 @@ const LoginPage = (props) => {
   console.log(`username : ${username} , password : ${password}`);
   return (
     <>
-      <Header />
-      <section class="text-gray-700 body-font w-full h-screen">
+      <section class="bg-gray-200 text-gray-700 body-font w-full h-screen">
+        <Header />
         <div class="container px-5 py-24 mx-auto flex flex-col items-center justify-center">
           {/* <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
           <h1 class="title-font font-medium text-3xl text-gray-900">
