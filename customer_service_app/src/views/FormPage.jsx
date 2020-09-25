@@ -24,7 +24,9 @@ class FormPage extends Component {
     productType: "",
   };
 
-  
+  async componentDidMount() {
+    // on form load
+  }
 
   render() {
     const handleFormSubmit = async (e) => {
