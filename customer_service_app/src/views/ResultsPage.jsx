@@ -10,10 +10,40 @@ const styles = (theme) => ({
     background: "#FCFBFE",
   },
 });
+const url = "http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/validateForm";
 
+function handleSubmitForm(e) {
+  e.preventDefault();
+  fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      customerName: "test",
+      customerAge: 21,
+      serviceOfficerName: "Testing",
+      NRIC: "S12345678F",
+      registrationTime: new Date().toLocaleString(),
+      branchCode: 123,
+      image: "Test.png",
+      productType: ["0137"]
+    }),
+  })
+    .then((res) => {
+      return res.text();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 class ResultPage extends Component {
-
+  handleSubmitForm(){
+    console.log("HI");
+  }
   render() {
+
     return (
       <>
         <Typography component="div">
