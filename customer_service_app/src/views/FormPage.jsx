@@ -72,8 +72,14 @@ class FormPage extends Component {
   render() {
     const handleFormSubmit = async (e) => {
       // form handler
-
       e.preventDefault();
+      // console.log(this.state.customerName)
+      // console.log(parseInt(this.state.customerAge))
+      // console.log(this.state.serviceOfficerName)
+      // console.log(this.state.nric)
+      // console.log(this.state.registrationTime.slice(0,8) + ' 0' + this.state.registrationTime.slice(11,18))
+      // console.log(parseInt(this.state.branchCode.value))
+      // console.log(getValuesFromObjectArray(this.state.productType))
 
       fetch(this.state.url, {
         method: "POST",
@@ -88,8 +94,8 @@ class FormPage extends Component {
           customerAge: parseInt(this.state.customerAge),
           serviceOfficerName: this.state.serviceOfficerName,
           NRIC: this.state.nric,
-          registrationTime: this.state.registrationTime.slice(0,8) + ' ' + this.state.registrationTime.slice(11,18),
-          branchCode: parseInt(this.state.branchCode),
+          registrationTime: this.state.registrationTime.slice(0,8) + ' 0' + this.state.registrationTime.slice(11,18),
+          branchCode: parseInt(this.state.branchCode.value),
           image: new Blob(["<html>…</html>"], {type: 'text/html'}),
           productType: getValuesFromObjectArray(this.state.productType),
         }),
