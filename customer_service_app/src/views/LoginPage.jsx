@@ -33,6 +33,10 @@ const LoginPage = (props) => {
         });
         console.log(`isAuthenticated state : ${auth.isAuthenticated()}`);
         window.localStorage.setItem("token", data);
+        window.localStorage.setItem(
+          "expDate",
+          new Date(new Date().getTime() + 10 * 60 * 1000)
+        );
       })
       .catch((err) => {
         console.log(err);

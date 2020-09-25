@@ -3,11 +3,12 @@ import React from "react";
 export default function Header() {
   return (
     <header class="text-gray-700 body-font">
-
       <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
-
         <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-          <img class="w-25 h-20 text-white p-2" src="https://logos-download.com/wp-content/uploads/2016/12/DBS_Bank_logo_logotype.png" />
+          <img
+            class="w-25 h-20 text-white p-2"
+            src="https://logos-download.com/wp-content/uploads/2016/12/DBS_Bank_logo_logotype.png"
+          />
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -43,7 +44,6 @@ export default function Header() {
           </svg>
         </button> */}
       </div>
-
     </header>
   );
 }
