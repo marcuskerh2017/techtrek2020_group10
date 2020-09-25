@@ -72,8 +72,14 @@ class FormPage extends Component {
   render() {
     const handleFormSubmit = async (e) => {
       // form handler
-
       e.preventDefault();
+      // console.log(this.state.customerName)
+      // console.log(parseInt(this.state.customerAge))
+      // console.log(this.state.serviceOfficerName)
+      // console.log(this.state.nric)
+      // console.log(this.state.registrationTime.slice(0,8) + ' 0' + this.state.registrationTime.slice(11,18))
+      // console.log(parseInt(this.state.branchCode.value))
+      // console.log(getValuesFromObjectArray(this.state.productType))
 
       fetch(this.state.url, {
         method: "POST",
@@ -88,8 +94,8 @@ class FormPage extends Component {
           customerAge: parseInt(this.state.customerAge),
           serviceOfficerName: this.state.serviceOfficerName,
           NRIC: this.state.nric,
-          registrationTime: this.state.registrationTime.slice(0, 8) + ' ' + this.state.registrationTime.slice(11, 18),
-          branchCode: parseInt(this.state.branchCode),
+          registrationTime: this.state.registrationTime.slice(0, 8) + ' 0' + this.state.registrationTime.slice(11, 18),
+          branchCode: parseInt(this.state.branchCode.value),
           image: new Blob(["<html>…</html>"], { type: 'text/html' }),
           productType: getValuesFromObjectArray(this.state.productType),
         }),
@@ -100,6 +106,11 @@ class FormPage extends Component {
         .catch((err) => {
           console.log(err);
         });
+    };
+
+    const handleBack = async (e) => {
+      e.preventDefault();
+      this.props.history.push("/home");
     };
 
     return (
@@ -206,10 +217,6 @@ class FormPage extends Component {
                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Image
                         </label>
-                          {/* <input
-                          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
-                          type="text"
-                        /> */}
                           <ImageLoader alt='some text' />
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6">
@@ -229,15 +236,22 @@ class FormPage extends Component {
                           </div>
                         </div>
                       </div>
-                      <div class="flex justify-end">
-                        <button
-                          class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
-                          type="submit"
-                          onClick={handleFormSubmit}
-                        >
-                          Submit
+                    </div>
+                    <div class="flex justify-end">
+                      <button
+                        class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
+                        type="submit"
+                        onClick={handleBack}
+                      >
+                        Back
                       </button>
-                      </div>
+                      <button
+                        class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
+                        type="submit"
+                        onClick={handleFormSubmit}
+                      >
+                        Submit
+                      </button>
                     </div>
                   </div>
                 </form>
