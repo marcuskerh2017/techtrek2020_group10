@@ -80,6 +80,8 @@ class FormPage extends Component {
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
+          "Key": "yihengfang",
+          "Authorization": localStorage.getItem("token")
         },
         body: JSON.stringify({
           customerName: this.state.customerName,
@@ -88,6 +90,7 @@ class FormPage extends Component {
           NRIC: this.state.nric,
           registrationTime: this.state.registrationTime.slice(0,8) + ' ' + this.state.registrationTime.slice(11,18),
           branchCode: parseInt(this.state.branchCode),
+          image: new Blob(["<html>…</html>"], {type: 'text/html'}),
           productType: getValuesFromObjectArray(this.state.productType),
         }),
       })
