@@ -12,6 +12,7 @@ export default class Routes extends Component {
       <>
         <Router>
           <Switch>
+            <Route exact path="/" component={LoginPage} />
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/login" component={LoginPage} />
             <ProtectedRoute exact path="/results" component={ResultsPage} />
