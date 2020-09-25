@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import Select from "react-select";
 
 const styles = (theme) => ({
   root: {
@@ -10,6 +11,8 @@ const styles = (theme) => ({
     background: "#FCFBFE",
   },
 });
+
+export const getIdsFromObjectArray = (arr) => arr.map((item) => item.id);
 
 class FormPage extends Component {
   state = {
@@ -21,9 +24,23 @@ class FormPage extends Component {
     registrationTime: new Date().toLocaleString(),
     branchCode: 7177,
     image: "",
-    productType: [],
+    productType: null,
     url: "http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/validateForm",
+    typeData: [
+      { name: "137 : Investor", _id: 1 }, { name: "070 : Insurance", _id: 2 }, { name: "291 : Loans", _id: 3 }, { name: "969 : Savings", _id: 4 }, { name: "555: Credit Cards", _id: 5 }
+    ],
+    branchData: [
+      { name: "3243", _id: 1 }, { name: "234", _id: 2 }, { name: "23432", _id: 3 }, { name: "12321", _id: 4 }, { name: "23432", _id: 5 }
+    ],
   };
+
+  parseRolesData = (data) => data.map((item) => {
+    const obj = {};
+    obj.label = item.name;
+    obj.value = item.name;
+    obj.id = item.name;
+    return obj;
+  });
 
   handleChange = (name) => (event) => {
     console.log(name)
@@ -31,8 +48,16 @@ class FormPage extends Component {
     this.setState({ [name]: event.target.value });
   };
 
+  handleSelectChange = (name) => (selectedOption) => {
+    this.setState({ [name]: selectedOption }, () => console.log(this.state.branchCode));
+  };
+
   async componentDidMount() {
     // on form load
+    this.setState({
+      typeData: this.parseRolesData(this.state.typeData),
+      branchData: this.parseRolesData(this.state.branchData)
+    });
   }
 
   render() {
@@ -102,13 +127,14 @@ class FormPage extends Component {
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >Branch Code</label>
                         <div class="flex-shrink w-full inline-block relative">
-                          <select class="block appearance-none text-gray-600 w-full bg-white border border-gray-400 shadow-inner px-4 py-2 pr-8 rounded" options={this.state.branchData}>
-                            <option>choose ...</option>
-                            <option>7177</option>
-                            <option>8100</option>
-                            <option>2300</option>
-                            <option>2911</option>
-                          </select>
+                          <Select
+                            value={this.state.branchCode}
+                            onChange={this.handleSelectChange("branchCode")}
+                            options={this.state.branchData}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            isClearable
+                          />
                           <div class="pointer-events-none absolute top-0 mt-3  right-0 flex items-center px-2 text-gray-600">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
                           </div>
@@ -124,17 +150,15 @@ class FormPage extends Component {
                       <div class='w-full md:w-1/2 px-3 mb-6'>
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' >Product Type</label>
                         <div class="flex-shrink w-full inline-block relative">
-                          <select class="block appearance-none text-gray-600 w-full bg-white border border-gray-400 shadow-inner px-4 py-2 pr-8 rounded">
-                            <option>choose ...</option>
-                            <option>137 : Investor</option>
-                            <option>070 : Insurance</option>
-                            <option>291 : Loans</option>
-                            <option>969 : Savings</option>
-                            <option>555 : Credit Cards</option>
-                          </select>
-                          <div class="pointer-events-none absolute top-0 mt-3  right-0 flex items-center px-2 text-gray-600">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                          </div>
+                          <Select
+                            value={this.state.productType}
+                            onChange={this.handleSelectChange("productType")}
+                            options={this.state.typeData}
+                            isMulti
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            isClearable
+                          />
                         </div>
                       </div>
                     </div>
