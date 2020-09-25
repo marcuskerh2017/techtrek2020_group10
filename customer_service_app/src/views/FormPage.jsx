@@ -1,4 +1,3 @@
-/* eslint-disable react/state-in-constructor */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
@@ -73,13 +72,6 @@ class FormPage extends Component {
       // form handler
 
       e.preventDefault();
-      // console.log(this.state.customerName)
-      // console.log(this.state.serviceOfficerName)
-      // console.log(parseInt(this.state.customerAge))
-      // console.log(this.state.nric)
-      // console.log(this.state.registrationTime)
-      // console.log(parseInt(this.state.branchCode))
-      // console.log(getValuesFromObjectArray(this.state.productType))
 
       fetch(this.state.url, {
         method: "POST",
