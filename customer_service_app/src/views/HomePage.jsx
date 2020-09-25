@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Clock from 'react-live-clock';
 
 const styles = (theme) => ({
   root: {
@@ -29,7 +30,8 @@ class HomePage extends Component {
             {/* <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1936&q=80" /> */}
             {/* <img alt="gallery" class="w-full h-full object-center opacity-25 absolute inset-0" src="https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1936&q=80" /> */}
             <div class="text-center lg:w-2/3 w-full">
-              <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Microdosing synth tattooed vexillologist</h1>
+              <Clock class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" format={'dddd, MMMM Do YYYY, h:mm:ss a'} ticking={true} timezone={'Asia/Singapore'} />
+              {/* <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Microdosing synth tattooed vexillologist</h1> */}
               <div class="flex justify-center">
                 <Link to="/form">
                   <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register A Customer</button>
