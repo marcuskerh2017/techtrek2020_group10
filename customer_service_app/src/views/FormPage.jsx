@@ -35,11 +35,11 @@ class FormPage extends Component {
       { name: "555: Credit Cards", _id: 5 },
     ],
     branchData: [
-      { name: "3243", _id: 1 },
-      { name: "234", _id: 2 },
-      { name: "23432", _id: 3 },
-      { name: "12321", _id: 4 },
-      { name: "23432", _id: 5 },
+      { name: "028", _id: 1 },
+      { name: "096", _id: 2 },
+      { name: "126", _id: 3 },
+      { name: "104", _id: 4 },
+      { name: "025", _id: 5 },
     ],
     file: []
   };
