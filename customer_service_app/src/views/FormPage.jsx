@@ -1,4 +1,3 @@
-/* eslint-disable react/state-in-constructor */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
@@ -14,11 +13,10 @@ const styles = (theme) => ({
   },
 });
 
-export const getIdsFromObjectArray = (arr) => arr.map((item) => item.id);
+export const getValuesFromObjectArray = (arr) => arr.map((item) => item.value);
 
 class FormPage extends Component {
   state = {
-    loading: true,
     customerName: "",
     serviceOfficerName: "",
     customerAge: 0,
@@ -54,15 +52,11 @@ class FormPage extends Component {
     });
 
   handleChange = (name) => (event) => {
-    console.log(name);
-    console.log(event.target.value);
     this.setState({ [name]: event.target.value });
   };
 
   handleSelectChange = (name) => (selectedOption) => {
-    this.setState({ [name]: selectedOption }, () =>
-      console.log(this.state.branchCode)
-    );
+    this.setState({ [name]: selectedOption });
   };
 
   async componentDidMount() {
@@ -76,7 +70,9 @@ class FormPage extends Component {
   render() {
     const handleFormSubmit = async (e) => {
       // form handler
+
       e.preventDefault();
+
       fetch(this.state.url, {
         method: "POST",
         mode: "cors",
@@ -85,12 +81,12 @@ class FormPage extends Component {
         },
         body: JSON.stringify({
           customerName: this.state.customerName,
-          customerAge: this.state.customerAge,
+          customerAge: parseInt(this.state.customerAge),
           serviceOfficerName: this.state.serviceOfficerName,
           NRIC: this.state.nric,
           registrationTime: this.state.registrationTime,
-          branchCode: this.state.branchCode,
-          productType: this.state.productType,
+          branchCode: parseInt(this.state.branchCode),
+          productType: getValuesFromObjectArray(this.state.productType),
         }),
       })
         .then((res) => {
@@ -121,7 +117,6 @@ class FormPage extends Component {
                           type="text"
                           value={this.state.customerName}
                           onChange={this.handleChange("customerName")}
-                          required
                         />
                       </div>
                       <div class="w-full md:w-1/2 px-3 mb-6">
@@ -133,7 +128,6 @@ class FormPage extends Component {
                           type="text"
                           value={this.state.serviceOfficerName}
                           onChange={this.handleChange("serviceOfficerName")}
-                          required
                         />
                       </div>
                     </div>
@@ -148,7 +142,6 @@ class FormPage extends Component {
                           type="text"
                           value={this.state.nric}
                           onChange={this.handleChange("nric")}
-                          required
                         />
                       </div>
                       <div class="w-full md:w-1/2 px-3 mb-6">
@@ -160,7 +153,6 @@ class FormPage extends Component {
                           type="text"
                           value={this.state.customerAge}
                           onChange={this.handleChange("customerAge")}
-                          required
                         />
                       </div>
                     </div>
@@ -174,7 +166,6 @@ class FormPage extends Component {
                           class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
                           type="text"
                           value={this.state.registrationTime}
-                          required
                         />
                       </div>
                       <div class="w-full md:w-1/2 px-3 mb-6">
@@ -211,7 +202,6 @@ class FormPage extends Component {
                         <input
                           class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
                           type="text"
-                          required
                         />
                       </div>
                       <div class="w-full md:w-1/2 px-3 mb-6">
@@ -235,6 +225,7 @@ class FormPage extends Component {
                       <button
                         class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
                         type="submit"
+                        onClick={handleFormSubmit}
                       >
                         Submit
                       </button>
