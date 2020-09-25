@@ -102,6 +102,11 @@ class FormPage extends Component {
         });
     };
 
+    const handleBack = async (e) => {
+      e.preventDefault();
+      this.props.history.push("/home");
+    };
+
     return (
       <>
         <div class="bg-gray-200 min-h-screen pt-2 font-mono">
@@ -228,6 +233,13 @@ class FormPage extends Component {
                       </div>
                     </div>
                     <div class="flex justify-end">
+                    <button
+                        class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
+                        type="submit"
+                        onClick={handleBack}
+                      >
+                        Back
+                      </button>
                       <button
                         class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
                         type="submit"
