@@ -236,22 +236,22 @@ class FormPage extends Component {
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <button
-                        class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
-                        type="submit"
-                        onClick={handleBack}
-                      >
-                        Back
+                      <div class="flex justify-end">
+                        <button
+                          class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
+                          type="submit"
+                          onClick={handleBack}
+                        >
+                          Back
                       </button>
-                      <button
-                        class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
-                        type="submit"
-                        onClick={handleFormSubmit}
-                      >
-                        Submit
+                        <button
+                          class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3"
+                          type="submit"
+                          onClick={handleFormSubmit}
+                        >
+                          Submit
                       </button>
+                      </div>
                     </div>
                   </div>
                 </form>
