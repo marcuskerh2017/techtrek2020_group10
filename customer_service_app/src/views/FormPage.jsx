@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+
 const styles = (theme) => ({
   root: {
     height: "100vh",
@@ -11,8 +12,25 @@ const styles = (theme) => ({
 });
 
 class FormPage extends Component {
+  state = {
+    loading: true,
+    customerName: "",
+    customerAge: "",
+    serviceOfficerName: "",
+    nric: "",
+    registrationTime: "",
+    branchCode: "",
+    image: "",
+    productType: "",
+  };
+
+  
 
   render() {
+    const handleFormSubmit = async (e) => {
+      // form handler
+    }
+
     return (
       <>
         <div class="bg-gray-200 min-h-screen pt-2 font-mono my-16">
