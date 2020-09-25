@@ -215,10 +215,6 @@ class FormPage extends Component {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                           Image
                         </label>
-                        {/* <input
-                          class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
-                          type="text"
-                        /> */}
                         <ImageLoader alt='some text'/>
                       </div>
                       <div class="w-full md:w-1/2 px-3 mb-6">
