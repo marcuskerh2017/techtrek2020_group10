@@ -35,7 +35,7 @@ const LoginPage = (props) => {
         window.localStorage.setItem("token", data);
         window.localStorage.setItem(
           "expDate",
-          new Date(new Date().getTime() + 10 * 60 * 1000)
+          new Date(new Date().getTime() + 1 * 60 * 1000)
         );
       })
       .catch((err) => {
